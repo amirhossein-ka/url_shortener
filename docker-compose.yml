@@ -1,0 +1,26 @@
+version: 3.8
+services:
+  redis:
+    image: redis:alpine
+    volumes:
+      - data:/bintanmi/redis/data
+    networks:
+      - app-net
+
+
+  app:
+    build: .
+    depends_on:
+      - redis
+    ports:
+      - 8080:8080
+    env_file:
+      - ./env.env
+    networks:
+      - app-net
+
+
+
+networks:
+  app-net:
+    driver: bridge
