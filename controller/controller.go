@@ -1,6 +1,6 @@
 package controller
 
 type Controller interface {
-    Start() 
-    Stop()
+	Start(string) error
+	Stop()
 }

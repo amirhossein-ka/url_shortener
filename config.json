@@ -1,8 +1,8 @@
 {
     "db": {
-        "address" : "",
-        "port": "1234",
+        "address" : "redis",
+        "port": "6379",
         "user": "user",
-        "pass": "pass",
+        "pass": "pass"
     }
 }

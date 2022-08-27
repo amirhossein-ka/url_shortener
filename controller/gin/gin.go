@@ -4,23 +4,36 @@ import (
 	"github.com/amirhossein-ka/url_shortener/config"
 	"github.com/amirhossein-ka/url_shortener/controller"
 	"github.com/amirhossein-ka/url_shortener/service"
+	"github.com/gin-gonic/gin"
 )
 
 type Gin struct {
-    service *service.Service
-    cfg config.Config
+	r       *gin.Engine
+	handler *handler
 }
 
-func New(cfg config.Config, srv *service.Service) controller.Controller { 
-
-    return &Gin{}
+type handler struct {
+	service service.Service
 }
 
-
-func (g *Gin) Start()  {
-    
+func New(cfg config.Config, srv service.Service) controller.Controller {
+	return &Gin{
+		r: gin.New(),
+		handler: &handler{
+			service: srv,
+		},
+	}
 }
 
-func (g *Gin) Stop()  {
-    
+func (g *Gin) Start(addr string) error {
+	g.r.Use(gin.Logger())
+	g.r.Use(gin.Recovery())
+
+	g.routing()
+
+	return g.r.Run(addr)
+}
+
+func (g *Gin) Stop() {
+
 }

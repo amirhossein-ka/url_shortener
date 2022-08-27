@@ -7,8 +7,8 @@ import (
 )
 
 func main() {
-    cmd.Parse()
-    if err := cmd.Start(); err != nil {
-        log.Fatal(err)
-    }
+	cmd.Parse()
+	if err := cmd.Start(); err != nil {
+		log.Fatal(err)
+	}
 }

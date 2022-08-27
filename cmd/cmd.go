@@ -26,9 +26,8 @@ func Start() error {
 
 	srv := service.New(rdb)
 
-    ctrl := gin.New(cfg, srv)
-
-    ctrl.Start()
+	ctrl := gin.New(cfg, srv)
+	ctrl.Start(":8080")
 
 	return nil
 }
