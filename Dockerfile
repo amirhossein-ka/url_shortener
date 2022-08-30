@@ -1,4 +1,4 @@
-FROM hub.hamdocker.ir/golang:1.19-alpine AS builder
+FROM golang:1.19-alpine AS builder
 
 WORKDIR /app
 
@@ -12,7 +12,7 @@ RUN go build -o ./bin/urlsh .
 
 
 
-FROM hub.hamdocker.ir/alpine:latest AS runner
+FROM alpine:latest AS runner
 
 ENV GOOS linux
 ENV CGO_ENABLED 0
