@@ -2,7 +2,6 @@ package service
 
 import (
 	"context"
-	"fmt"
 )
 
 func (s *ServiceImpl) ShortUrlAddress(ctx context.Context, url string) (string, error) {
@@ -12,7 +11,7 @@ func (s *ServiceImpl) ShortUrlAddress(ctx context.Context, url string) (string, 
 		return "", err
 	}
 
-	return fmt.Sprintf("/go/%s", rString), nil
+	return rString, nil
 
 }
 

@@ -25,7 +25,7 @@ func (h *handler) shortener(c *gin.Context) {
 		return
 	}
 
-	path, err := h.service.ShortUrlAddress(c.Request.Context(), url.Url)
+	key, err := h.service.ShortUrlAddress(c.Request.Context(), url.Url)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"code": 500, "err": err.Error()})
 		return
@@ -34,6 +34,6 @@ func (h *handler) shortener(c *gin.Context) {
 	fmt.Println(c.Request.Host)
 	c.JSON(http.StatusOK, gin.H{
 		"code": 200,
-		"path": fmt.Sprintf("http://%s/%s", c.Request.Host, path),
+		"path": fmt.Sprintf("http://%s/go/%s", c.Request.Host, key),
 	})
 }

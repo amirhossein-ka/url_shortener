@@ -11,8 +11,6 @@ services:
       app-net:
         aliases:
           - redis
-
-
   app:
     build:
       context: .
@@ -29,14 +27,9 @@ services:
     configs:
       - source: app-conf
         target: /config.json
-
-
-
-
 networks:
   app-net:
     driver: bridge
-
 configs:
   app-conf:
     file: ./config.json

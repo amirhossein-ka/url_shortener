@@ -11,15 +11,12 @@ COPY . .
 RUN go build -o ./bin/urlsh .
 
 
-
 FROM hub.hamdocker.ir/alpine:latest AS runner
 
 ENV GOOS linux
 ENV CGO_ENABLED 0
 
 COPY --from=builder /app/bin/urlsh /usr/bin/urlsh
-# COPY config.json .
-
-USER nobody:nobody
+USER app
 CMD [ "/usr/bin/urlsh", "-c", "/config.json" ]
 
